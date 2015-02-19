@@ -22,13 +22,17 @@ public class BaseActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
+
+        buildMenu();
+    }
+
+    private void buildMenu() {
         mContentFrame = (FrameLayout) findViewById(R.id.content_frame);
         mListItems = getResources().getStringArray(R.array.drawer_items);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         mDrawerList.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_list_item, mListItems));
         mDrawerList.setOnItemClickListener((parent, view, position, id) -> selectItem(position));
-
     }
 
     private void selectItem(final int position) {
