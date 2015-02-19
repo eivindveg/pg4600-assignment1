@@ -31,5 +31,5 @@
             android:ems="10"
             android:id="@+id/playerTwoText"
             android:layout_below="@+id/playerOneText"
-            android:layout_alignEnd="@+id/textView"/>
+            android:layout_centerHorizontal="true"/>
 </RelativeLayout>
