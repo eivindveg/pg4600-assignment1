@@ -13,7 +13,7 @@ public class NewGameActivity extends BaseActivity {
     private Button button;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         getLayoutInflater().inflate(R.layout.new_game, mContentFrame);
