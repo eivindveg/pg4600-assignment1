@@ -7,7 +7,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-
+/**
+ * Concept sourced from url http://androiddeveloperdemo.blogspot.no/2014/08/android-navigation-drawer-with-multiple.html
+ */
 public class BaseActivity extends Activity {
 
     protected String[] mListItems;
