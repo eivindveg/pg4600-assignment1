@@ -7,5 +7,7 @@ public class NewGameActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getLayoutInflater().inflate(R.layout.new_game, mContentFrame);
     }
 }
