@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="drawer_items">
+        <item name="new_game">New Game</item>
+        <item name="load_game">Load Game</item>
+        <item name="leaderboard">Leaderboards</item>
+    </string-array>
+
+</resources>
