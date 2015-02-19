@@ -8,6 +8,10 @@ public class Square {
         state = SquareState.EMPTY;
     }
 
+    public SquareState getState() {
+        return state;
+    }
+
     public void setState(SquareState newState) {
         state = newState;
     }
