@@ -8,5 +8,16 @@
     <string name="player_one">Player 1</string>
     <string name="player_two">Player 2</string>
     <string name="start_game">Start Game</string>
+    <string name="top_left">Top left</string>
+    <string name="top_right">Top right</string>
+    <string name="top_center">Top center</string>
+    <string name="center_left">Center left</string>
+    <string name="center">Center</string>
+    <string name="center_right">Center right</string>
+    <string name="bottom_left">Bottom left</string>
+    <string name="bottom_center">Bottom center</string>
+    <string name="bottom_right">Bottom right</string>
+    <string name="drawer_open">Open drawer</string>
+    <string name="drawer_close">Close drawer</string>
 
 </resources>

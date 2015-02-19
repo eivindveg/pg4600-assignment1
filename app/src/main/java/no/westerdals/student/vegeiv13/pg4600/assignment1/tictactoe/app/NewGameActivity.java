@@ -10,8 +10,6 @@ import no.westerdals.student.vegeiv13.pg4600.assignment1.tictactoe.app.game.exce
 
 public class NewGameActivity extends BaseActivity {
 
-    private Button button;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,17 +20,17 @@ public class NewGameActivity extends BaseActivity {
     }
 
     private void wireButton() {
-        button = (Button) findViewById(R.id.start_game_button);
+        final Button button = (Button) findViewById(R.id.start_game_button);
         EditText player1 = (EditText) findViewById(R.id.playerOneText);
         EditText player2 = (EditText) findViewById(R.id.playerTwoText);
         button.setOnClickListener(v -> {
             try {
                 Player[] players = Player.fromTextFields(player1.getText().toString(), player2.getText().toString());
-                Intent gameIntent = new Intent(this, GameActivity.class);
+                Intent gameIntent = new Intent(NewGameActivity.this, GameActivity.class);
                 gameIntent.putExtra("players", players);
-                startActivity(gameIntent);
-            } catch(PlayerException e) {
-                Toast.makeText(this, "Please input valid player name for " + e.getPlayerId(), Toast.LENGTH_LONG);
+                NewGameActivity.this.startActivity(gameIntent);
+            } catch (PlayerException e) {
+                Toast.makeText(NewGameActivity.this, "Please input valid player name for Player " + e.getPlayerId() + 1, Toast.LENGTH_LONG).show();
             }
         });
     }
