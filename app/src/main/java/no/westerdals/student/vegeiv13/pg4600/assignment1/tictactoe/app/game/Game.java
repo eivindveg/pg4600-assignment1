@@ -8,7 +8,7 @@ public class Game {
     private final Player[] players;
 
     private Player activePlayer;
-    private int roundsPlayed;
+    private int ticksPlaced;
     private boolean newRound;
     private Player winner;
 
@@ -89,8 +89,8 @@ public class Game {
             activePlayer = players[0];
         } else {
             activePlayer = players[1];
-            roundsPlayed++;
         }
+        ticksPlaced++;
         newRound = !newRound;
         activePlayer.startTimer();
     }
@@ -105,7 +105,7 @@ public class Game {
     }
 
     public boolean isGameOver() {
-        return this.winner != null || roundsPlayed * 2 - 1 > Math.pow(board.getSize(), 2);
+        return this.winner != null || ticksPlaced >= Math.pow(board.getSize(), 2);
     }
 
 

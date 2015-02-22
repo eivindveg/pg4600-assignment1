@@ -45,7 +45,8 @@ public class LeaderboardActivity extends BaseActivity {
             }
             Collections.sort(finishedGames);
         }
-        LeaderboardAdapter adapter = new LeaderboardAdapter(finishedGames, layoutInflater);
+        int end = finishedGames.size() >= 5 ? 5 : finishedGames.size();
+        LeaderboardAdapter adapter = new LeaderboardAdapter(finishedGames.subList(0, end), layoutInflater);
         leaderListView.setAdapter(adapter);
     }
 
@@ -54,15 +55,17 @@ public class LeaderboardActivity extends BaseActivity {
         Set<String> leaderboard = preferences.getStringSet("leaderboard", new HashSet<>());
         Gson gson = new Gson();
         games.add(finishedGame);
-        System.out.println(leaderboard);
+
         for (final String s : leaderboard) {
             FinishedGameInfo player = gson.fromJson(s, FinishedGameInfo.class);
             games.add(player);
         }
+
         leaderboard = new HashSet<>();
         for (final FinishedGameInfo game : games) {
             leaderboard.add(gson.toJson(game));
         }
+
         preferences.edit().putStringSet("leaderboard", leaderboard).apply();
         Collections.sort(games);
         int end = games.size() >= 5 ? 5 : games.size();
