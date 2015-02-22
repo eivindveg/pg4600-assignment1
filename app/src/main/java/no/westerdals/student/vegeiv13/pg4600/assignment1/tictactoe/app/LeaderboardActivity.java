@@ -38,7 +38,7 @@ public class LeaderboardActivity extends BaseActivity {
         } else {
             Gson gson = new Gson();
             finishedGames = new ArrayList<>();
-            Set<String> leaderboard = preferences.getStringSet("leaderboard", new HashSet<>());
+            Set<String> leaderboard = preferences.getStringSet("leaderboard", new HashSet<String>());
             for (final String s : leaderboard) {
                 FinishedGameInfo player = gson.fromJson(s, FinishedGameInfo.class);
                 finishedGames.add(player);
@@ -52,7 +52,7 @@ public class LeaderboardActivity extends BaseActivity {
 
     private List<FinishedGameInfo> updateLeaderboard() {
         List<FinishedGameInfo> games = new ArrayList<>();
-        Set<String> leaderboard = preferences.getStringSet("leaderboard", new HashSet<>());
+        Set<String> leaderboard = preferences.getStringSet("leaderboard", new HashSet<String>());
         Gson gson = new Gson();
         games.add(finishedGame);
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.*;
 import no.westerdals.student.vegeiv13.pg4600.assignment1.tictactoe.app.game.FinishedGameInfo;
 import no.westerdals.student.vegeiv13.pg4600.assignment1.tictactoe.app.game.Game;
@@ -46,8 +47,13 @@ public class GameActivity extends BaseActivity {
             int j = 0;
             while (j < columns) {
                 final int x = j;
-                ImageButton button = (ImageButton) row.getChildAt(j);
-                button.setOnClickListener(v -> rigConditions(y, x, button));
+                final ImageButton button = (ImageButton) row.getChildAt(j);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(final View v) {
+                        GameActivity.this.rigConditions(y, x, button);
+                    }
+                });
                 j++;
             }
             i++;

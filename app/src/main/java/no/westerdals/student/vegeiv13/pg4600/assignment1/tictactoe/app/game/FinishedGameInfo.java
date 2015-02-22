@@ -1,6 +1,5 @@
 package no.westerdals.student.vegeiv13.pg4600.assignment1.tictactoe.app.game;
 
-import android.support.annotation.NonNull;
 import no.westerdals.student.vegeiv13.pg4600.assignment1.tictactoe.app.game.actors.Player;
 
 import java.io.Serializable;
@@ -23,7 +22,7 @@ public class FinishedGameInfo implements Serializable, Comparable<FinishedGameIn
     }
 
     @Override
-    public int compareTo(final @NonNull FinishedGameInfo another) {
+    public int compareTo(final FinishedGameInfo another) {
         if (this.getWinner() == null && another.getWinner() == null) {
             // Both were draws
             return 0;

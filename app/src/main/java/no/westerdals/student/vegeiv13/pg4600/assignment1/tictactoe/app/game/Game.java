@@ -16,6 +16,7 @@ public class Game {
         this.players = players;
         board = new TicTacToeBoard(3);
         prepare();
+        ticksPlaced = 0;
     }
 
     private void prepare() {
@@ -105,6 +106,7 @@ public class Game {
     }
 
     public boolean isGameOver() {
+        System.out.println(ticksPlaced);
         return this.winner != null || ticksPlaced >= Math.pow(board.getSize(), 2);
     }
 

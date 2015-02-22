@@ -4,14 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.*;
 
 /**
  * Concept sourced from url http://androiddeveloperdemo.blogspot.no/2014/08/android-navigation-drawer-with-multiple.html
@@ -47,6 +44,7 @@ public class BaseActivity extends Activity {
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 mDrawerLayout,
+                R.drawable.ic_drawer,
                 R.string.drawer_open,
                 R.string.drawer_close
         ) {
@@ -98,7 +96,12 @@ public class BaseActivity extends Activity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         mDrawerList.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_list_item, mListItems));
-        mDrawerList.setOnItemClickListener((parent, view, position, id) -> selectItem(position));
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
+                BaseActivity.this.selectItem(position);
+            }
+        });
     }
 
     private void selectItem(final int position) {
