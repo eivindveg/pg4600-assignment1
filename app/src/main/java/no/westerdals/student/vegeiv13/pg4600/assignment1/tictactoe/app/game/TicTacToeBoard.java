@@ -37,4 +37,16 @@ public class TicTacToeBoard {
         board[x][y].setState(mark);
         return true;
     }
+
+    protected boolean isMarkOnAntiDiagonal(final int x, final int y) {
+        return x == getSize() - (y + 1);
+    }
+
+    protected boolean isMarkOnStandardDiagonal(final int x, final int y) {
+        return x == y;
+    }
+
+    protected boolean isMarkAtBoardsEdge(final int i) {
+        return i == getSize() - 1;
+    }
 }

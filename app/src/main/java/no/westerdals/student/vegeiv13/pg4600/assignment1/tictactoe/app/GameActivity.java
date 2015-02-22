@@ -1,5 +1,6 @@
 package no.westerdals.student.vegeiv13.pg4600.assignment1.tictactoe.app;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -45,15 +46,23 @@ public class GameActivity extends BaseActivity {
             while(j < columns) {
                 final int x = j;
                 ImageButton button = (ImageButton) row.getChildAt(j);
-                button.setOnClickListener(v -> {
-                    if(game.tick(x, y)) {
-                        SquareState mark = game.getActivePlayer().getMark();
-                        button.setImageDrawable(getImageForMark(mark));
-                    }
-                });
+                button.setOnClickListener(v -> rigConditions(y, x, button));
                 j++;
             }
             i++;
+        }
+    }
+
+    private void rigConditions(final int y, final int x, final ImageButton button) {
+        if(game.tick(x, y)) {
+            SquareState mark = game.getActivePlayer().getMark();
+            button.setImageDrawable(getImageForMark(mark));
+        }
+        if(game.isGameOver()) {
+            Player winner = game.getWinner();
+            Intent intent = new Intent(this, LeaderboardActivity.class);
+            intent.putExtra("winner", winner);
+            startActivity(intent);
         }
     }
 

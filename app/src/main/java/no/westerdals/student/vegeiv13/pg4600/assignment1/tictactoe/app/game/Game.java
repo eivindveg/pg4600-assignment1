@@ -1,5 +1,6 @@
 package no.westerdals.student.vegeiv13.pg4600.assignment1.tictactoe.app.game;
 
+import android.util.Log;
 import no.westerdals.student.vegeiv13.pg4600.assignment1.tictactoe.app.game.actors.Player;
 
 public class Game {
@@ -10,6 +11,7 @@ public class Game {
     private Player activePlayer;
     private int roundsPlayed;
     private boolean newRound;
+    private Player winner;
 
     public Game(Player[] players) {
         this.players = players;
@@ -18,57 +20,72 @@ public class Game {
     }
 
     private void prepare() {
-        roundsPlayed = 1;
         resolvePlayers();
     }
 
-    private void resolveBoard() {
-        if (checkForVictory()) {
-
+    private void resolve(final int x, final int y) {
+        boolean b = checkForVictory(x, y);
+        resolvePlayers();
+        if(b) {
+            setWinner(getActivePlayer());
         }
     }
 
-    private boolean checkForVictory() {
-        return checkVictoryHorizontal(0, 0)
-                || checkVictoryVertical(0, 0)
-                || checkVictoryDiagonal(0, 0);
+    private boolean checkForVictory(final int x, final int y) {
+        return checkVictoryHorizontal(y)
+                || checkVictoryVertical(x)
+                || checkVictoryDiagonal(x, y);
     }
 
     private boolean checkVictoryDiagonal(final int x, final int y) {
-        return !(x != y || x >= board.getSize())
-                && board.isTickedByMark(x, y, activePlayer.getMark())
-                && checkVictoryDiagonal(x + 1, y + 1);
-
-    }
-
-    private boolean checkVictoryVertical(final int x, final int y) {
-        for (int i = x; i < board.getSize(); i++) {
-            if (board.isTickedByMark(i, y, activePlayer.getMark())) {
-                if (checkVictoryVertical(i, y + 1)) {
+        // Diagonal going top-left to bottom-right
+        if(board.isMarkOnStandardDiagonal(x, y)) {
+            for(int i = 0; i < board.getSize(); i++) {
+                if(!board.isTickedByMark(i, i, getActivePlayer().getMark())) {
+                    break;
+                } else if(i == board.getSize() - 1) {
                     return true;
                 }
             }
         }
-        return false;
-    }
 
-    private boolean checkVictoryHorizontal(final int y, final int x) {
-
-        if (board.isTickedByMark(x, y, activePlayer.getMark())) {
-            if (checkVictoryVertical(x, y + 1)) {
-                return true;
+        // Diagonal going bottom-left to top-right
+        if(board.isMarkOnAntiDiagonal(x, y)) {
+            for(int i = 0; i < board.getSize(); i++) {
+                if(!board.isTickedByMark(i, (board.getSize()-1) - i, getActivePlayer().getMark())) {
+                    break;
+                } else if(board.isMarkAtBoardsEdge(i)) {
+                    return true;
+                }
             }
         }
+
         return false;
     }
 
-    private boolean checkVictoryHorizontal() {
-        for (int y = 0; y < board.getSize(); y++) {
 
+    private boolean checkVictoryVertical(final int column) {
+        for (int y = 0; y < board.getSize(); y++) {
+            if(!board.isTickedByMark(column, y, activePlayer.getMark())) {
+                return false;
+            }
         }
+        return true;
+    }
+
+    private boolean checkVictoryHorizontal(int row) {
+        for (int x = 0; x < board.getSize(); x++) {
+            if(!board.isTickedByMark(x, row, activePlayer.getMark())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void resolvePlayers() {
+        if(activePlayer != null) {
+            activePlayer.pauseTimer();
+        }
         if (newRound) {
             activePlayer = players[0];
         } else {
@@ -76,20 +93,34 @@ public class Game {
             roundsPlayed++;
         }
         newRound = !newRound;
+        activePlayer.startTimer();
     }
 
     public boolean tick(int x, int y) {
-        if (!board.tickWithMark(x, y, activePlayer.getMark())) {
+        if (isGameOver() || !board.tickWithMark(x, y, activePlayer.getMark())) {
             return false;
         }
-        resolveBoard();
-        resolvePlayers();
+        resolve(x, y);
 
         return true;
+    }
+
+    public boolean isGameOver() {
+        Log.d("Rounds played", String.valueOf(roundsPlayed));
+        Log.d("Winner", winner != null ? winner.getName() : "Noone");
+        return this.winner != null || roundsPlayed * 2 - 1 > Math.pow(board.getSize(), 2);
     }
 
 
     public Player getActivePlayer() {
         return activePlayer;
+    }
+
+    public void setWinner(final Player winner) {
+        this.winner = winner;
+    }
+
+    public Player getWinner() {
+        return winner;
     }
 }

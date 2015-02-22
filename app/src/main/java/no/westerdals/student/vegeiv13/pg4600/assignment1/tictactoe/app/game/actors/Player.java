@@ -9,6 +9,8 @@ public class Player implements Serializable {
 
     private final String name;
     private final SquareState mark;
+    private long elapsedTime;
+    private long startedAt;
 
     public Player(String name, SquareState mark) {
         this.name = name;
@@ -39,5 +41,22 @@ public class Player implements Serializable {
 
     public SquareState getMark() {
         return mark;
+    }
+
+    public void pauseTimer() {
+        if(startedAt == 0L) {
+            throw new UnsupportedOperationException("Timer not started");
+        }
+        long stamp = System.currentTimeMillis();
+        elapsedTime += stamp - startedAt;
+        startedAt = 0L;
+    }
+
+    public void startTimer() {
+        startedAt = System.currentTimeMillis();
+    }
+
+    public long getElapsedTime() {
+        return this.elapsedTime;
     }
 }

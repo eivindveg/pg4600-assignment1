@@ -106,6 +106,8 @@ public class BaseActivity extends Activity {
         switch(position) {
             case 0: intentClass = NewGameActivity.class;
                 break;
+            case 2: intentClass = LeaderboardActivity.class;
+                break;
             default: return;
         }
 
