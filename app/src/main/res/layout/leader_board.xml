@@ -8,7 +8,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/leaderTitle"
-            android:id="@+id/textView2"
+            android:id="@+id/leaderTextView"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"/>
 
@@ -17,5 +17,5 @@
             android:layout_height="fill_parent"
             android:id="@+id/leaderListView"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/textView2"/>
+            android:layout_below="@+id/leaderTextView"/>
 </RelativeLayout>

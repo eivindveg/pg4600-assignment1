@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * Concept sourced from url http://androiddeveloperdemo.blogspot.no/2014/08/android-navigation-drawer-with-multiple.html
@@ -106,6 +107,9 @@ public class BaseActivity extends Activity {
         switch(position) {
             case 0: intentClass = NewGameActivity.class;
                 break;
+            case 1:
+                Toast.makeText(this, "Not yet implemented", Toast.LENGTH_LONG).show();
+                return;
             case 2: intentClass = LeaderboardActivity.class;
                 break;
             default: return;

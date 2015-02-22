@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.*;
+import no.westerdals.student.vegeiv13.pg4600.assignment1.tictactoe.app.game.FinishedGameInfo;
 import no.westerdals.student.vegeiv13.pg4600.assignment1.tictactoe.app.game.Game;
 import no.westerdals.student.vegeiv13.pg4600.assignment1.tictactoe.app.game.SquareState;
 import no.westerdals.student.vegeiv13.pg4600.assignment1.tictactoe.app.game.actors.Player;
@@ -59,9 +60,9 @@ public class GameActivity extends BaseActivity {
             button.setImageDrawable(getImageForMark(mark));
         }
         if(game.isGameOver()) {
-            Player winner = game.getWinner();
+            FinishedGameInfo gameinfo = game.getFinishedGameInfo();
             Intent intent = new Intent(this, LeaderboardActivity.class);
-            intent.putExtra("winner", winner);
+            intent.putExtra("finished", gameinfo);
             startActivity(intent);
         }
     }

@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="75dp">
+                android:layout_height="70dp">
+
 
     <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/leaderDateTimePlaceholder"
+            android:id="@+id/leaderDateTime"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/namePlaceholder"
+            android:layout_below="@id/leaderDateTime"
             android:id="@+id/leaderPlayerName"
             />
 
@@ -17,6 +28,8 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/timePlaceholder"
             android:id="@+id/leaderPlayerTime"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/leaderDateTime"
+            android:layout_alignParentEnd="true"
             android:layout_marginStart="20dp"/>
+
 </RelativeLayout>

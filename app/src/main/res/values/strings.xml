@@ -22,5 +22,6 @@
     <string name="namePlaceholder">Name</string>
     <string name="timePlaceholder">Time</string>
     <string name="leaderTitle">Leaderboard</string>
+    <string name="leaderDateTimePlaceholder">DateTime</string>
 
 </resources>

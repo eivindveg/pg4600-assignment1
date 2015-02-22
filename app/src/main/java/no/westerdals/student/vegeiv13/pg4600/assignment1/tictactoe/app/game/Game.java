@@ -1,6 +1,5 @@
 package no.westerdals.student.vegeiv13.pg4600.assignment1.tictactoe.app.game;
 
-import android.util.Log;
 import no.westerdals.student.vegeiv13.pg4600.assignment1.tictactoe.app.game.actors.Player;
 
 public class Game {
@@ -106,8 +105,6 @@ public class Game {
     }
 
     public boolean isGameOver() {
-        Log.d("Rounds played", String.valueOf(roundsPlayed));
-        Log.d("Winner", winner != null ? winner.getName() : "Noone");
         return this.winner != null || roundsPlayed * 2 - 1 > Math.pow(board.getSize(), 2);
     }
 
@@ -116,11 +113,14 @@ public class Game {
         return activePlayer;
     }
 
-    public void setWinner(final Player winner) {
+    private void setWinner(final Player winner) {
         this.winner = winner;
     }
 
-    public Player getWinner() {
-        return winner;
+    public FinishedGameInfo getFinishedGameInfo() {
+        if(!isGameOver()) {
+            return null;
+        }
+        return new FinishedGameInfo(winner, System.currentTimeMillis());
     }
 }
