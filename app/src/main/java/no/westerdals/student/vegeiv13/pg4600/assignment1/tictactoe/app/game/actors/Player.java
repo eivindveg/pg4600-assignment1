@@ -50,6 +50,9 @@ public class Player implements Serializable {
         return mark;
     }
 
+    /**
+     * Stops this player's timer and adds the elapsed time since start to the total elapsed
+     */
     public void pauseTimer() {
         if (startedAt == 0L) {
             throw new UnsupportedOperationException("Timer not started");
@@ -59,10 +62,17 @@ public class Player implements Serializable {
         startedAt = 0L;
     }
 
+    /**
+     * Starts this player's timer
+     */
     public void startTimer() {
         startedAt = System.currentTimeMillis();
     }
 
+    /**
+     * Gets the total time elapsed between every call to startTimer and pauseTimer
+     * @return this player's elapsed time
+     */
     public long getElapsedTime() {
         return this.elapsedTime;
     }
