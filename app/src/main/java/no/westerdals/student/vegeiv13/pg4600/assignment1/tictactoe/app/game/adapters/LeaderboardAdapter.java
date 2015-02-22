@@ -50,7 +50,7 @@ public class LeaderboardAdapter extends BaseAdapter {
         final FinishedGameInfo finishedGameInfo = finishedGames.get(position);
         final Player winner = finishedGameInfo.getWinner();
         final LeaderboardRow baseRow;
-        if(convertView == null) {
+        if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.leader_board_row, null);
             baseRow = new LeaderboardRow();
 
@@ -62,7 +62,7 @@ public class LeaderboardAdapter extends BaseAdapter {
             baseRow = (LeaderboardRow) convertView.getTag();
         }
 
-        if(winner == null) {
+        if (winner == null) {
             baseRow.name.setText("Draw");
             baseRow.score.setText("");
         } else {

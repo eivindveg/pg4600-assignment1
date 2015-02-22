@@ -39,12 +39,12 @@ public class GameActivity extends BaseActivity {
         TableLayout board = (TableLayout) findViewById(R.id.game_board);
         int rows = board.getChildCount();
         int i = 0;
-        while(i < rows) {
+        while (i < rows) {
             final int y = i;
             TableRow row = (TableRow) board.getChildAt(i);
             int columns = row.getChildCount();
             int j = 0;
-            while(j < columns) {
+            while (j < columns) {
                 final int x = j;
                 ImageButton button = (ImageButton) row.getChildAt(j);
                 button.setOnClickListener(v -> rigConditions(y, x, button));
@@ -55,11 +55,11 @@ public class GameActivity extends BaseActivity {
     }
 
     private void rigConditions(final int y, final int x, final ImageButton button) {
-        if(game.tick(x, y)) {
+        if (game.tick(x, y)) {
             SquareState mark = game.getActivePlayer().getMark();
             button.setImageDrawable(getImageForMark(mark));
         }
-        if(game.isGameOver()) {
+        if (game.isGameOver()) {
             FinishedGameInfo gameinfo = game.getFinishedGameInfo();
             Intent intent = new Intent(this, LeaderboardActivity.class);
             intent.putExtra("finished", gameinfo);
@@ -68,9 +68,11 @@ public class GameActivity extends BaseActivity {
     }
 
     private Drawable getImageForMark(SquareState mark) {
-        switch(mark) {
-            case X: return xImage;
-            case O: return oImage;
+        switch (mark) {
+            case X:
+                return xImage;
+            case O:
+                return oImage;
             default: {
                 Toast.makeText(this, "We have encountered a problem", Toast.LENGTH_LONG).show();
                 return null;

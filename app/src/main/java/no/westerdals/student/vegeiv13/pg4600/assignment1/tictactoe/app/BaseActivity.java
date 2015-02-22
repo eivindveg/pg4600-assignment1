@@ -37,7 +37,7 @@ public class BaseActivity extends Activity {
     }
 
     private void buildActionBar() {
-        if(getActionBar() == null) {
+        if (getActionBar() == null) {
             return;
         }
 
@@ -104,19 +104,22 @@ public class BaseActivity extends Activity {
     private void selectItem(final int position) {
         mDrawerLayout.closeDrawer(mDrawerList);
         Class<? extends BaseActivity> intentClass;
-        switch(position) {
-            case 0: intentClass = NewGameActivity.class;
+        switch (position) {
+            case 0:
+                intentClass = NewGameActivity.class;
                 break;
             case 1:
                 Toast.makeText(this, "Not yet implemented", Toast.LENGTH_LONG).show();
                 return;
-            case 2: intentClass = LeaderboardActivity.class;
+            case 2:
+                intentClass = LeaderboardActivity.class;
                 break;
-            default: return;
+            default:
+                return;
         }
 
         // Do not start an activity if it's the same
-        if(intentClass.equals(this.getClass())) {
+        if (intentClass.equals(this.getClass())) {
             return;
         }
 

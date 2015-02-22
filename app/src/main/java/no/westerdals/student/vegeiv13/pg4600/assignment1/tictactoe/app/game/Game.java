@@ -25,7 +25,7 @@ public class Game {
     private void resolve(final int x, final int y) {
         boolean b = checkForVictory(x, y);
         resolvePlayers();
-        if(b) {
+        if (b) {
             setWinner(getActivePlayer());
         }
     }
@@ -38,22 +38,22 @@ public class Game {
 
     private boolean checkVictoryDiagonal(final int x, final int y) {
         // Diagonal going top-left to bottom-right
-        if(board.isMarkOnStandardDiagonal(x, y)) {
-            for(int i = 0; i < board.getSize(); i++) {
-                if(!board.isTickedByMark(i, i, getActivePlayer().getMark())) {
+        if (board.isMarkOnStandardDiagonal(x, y)) {
+            for (int i = 0; i < board.getSize(); i++) {
+                if (!board.isTickedByMark(i, i, getActivePlayer().getMark())) {
                     break;
-                } else if(i == board.getSize() - 1) {
+                } else if (i == board.getSize() - 1) {
                     return true;
                 }
             }
         }
 
         // Diagonal going bottom-left to top-right
-        if(board.isMarkOnAntiDiagonal(x, y)) {
-            for(int i = 0; i < board.getSize(); i++) {
-                if(!board.isTickedByMark(i, (board.getSize()-1) - i, getActivePlayer().getMark())) {
+        if (board.isMarkOnAntiDiagonal(x, y)) {
+            for (int i = 0; i < board.getSize(); i++) {
+                if (!board.isTickedByMark(i, (board.getSize() - 1) - i, getActivePlayer().getMark())) {
                     break;
-                } else if(board.isMarkAtBoardsEdge(i)) {
+                } else if (board.isMarkAtBoardsEdge(i)) {
                     return true;
                 }
             }
@@ -65,7 +65,7 @@ public class Game {
 
     private boolean checkVictoryVertical(final int column) {
         for (int y = 0; y < board.getSize(); y++) {
-            if(!board.isTickedByMark(column, y, activePlayer.getMark())) {
+            if (!board.isTickedByMark(column, y, activePlayer.getMark())) {
                 return false;
             }
         }
@@ -74,7 +74,7 @@ public class Game {
 
     private boolean checkVictoryHorizontal(int row) {
         for (int x = 0; x < board.getSize(); x++) {
-            if(!board.isTickedByMark(x, row, activePlayer.getMark())) {
+            if (!board.isTickedByMark(x, row, activePlayer.getMark())) {
                 return false;
             }
         }
@@ -82,7 +82,7 @@ public class Game {
     }
 
     private void resolvePlayers() {
-        if(activePlayer != null) {
+        if (activePlayer != null) {
             activePlayer.pauseTimer();
         }
         if (newRound) {
@@ -118,7 +118,7 @@ public class Game {
     }
 
     public FinishedGameInfo getFinishedGameInfo() {
-        if(!isGameOver()) {
+        if (!isGameOver()) {
             return null;
         }
         return new FinishedGameInfo(winner, System.currentTimeMillis());

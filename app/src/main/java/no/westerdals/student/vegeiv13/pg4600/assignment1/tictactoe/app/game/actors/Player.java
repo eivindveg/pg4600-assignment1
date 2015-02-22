@@ -17,10 +17,13 @@ public class Player implements Serializable {
         this.mark = mark;
     }
 
-    public String getName() {
-        return name;
-    }
-
+    /**
+     * Allows creating multiple player objects from a variable length string array
+     *
+     * @param playerNames A variable-length array containing player names
+     * @return An array containing player names
+     * @throws PlayerException if any of the array indexes are empty or contain empty strings.
+     */
     public static Player[] fromTextFields(final String... playerNames) throws PlayerException {
         Player[] players = new Player[playerNames.length];
         for (int i = 0; i < playerNames.length; i++) {
@@ -29,7 +32,7 @@ public class Player implements Serializable {
             if (playerName == null || playerName.replace(" ", "").equals("")) {
                 throw new PlayerException(i);
             }
-            if(i == 0) {
+            if (i == 0) {
                 mark = SquareState.X;
             } else {
                 mark = SquareState.O;
@@ -39,12 +42,16 @@ public class Player implements Serializable {
         return players;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public SquareState getMark() {
         return mark;
     }
 
     public void pauseTimer() {
-        if(startedAt == 0L) {
+        if (startedAt == 0L) {
             throw new UnsupportedOperationException("Timer not started");
         }
         long stamp = System.currentTimeMillis();
